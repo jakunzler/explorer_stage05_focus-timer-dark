@@ -33,10 +33,16 @@ export default function Controls({
     return newMinutes
   }
 
+  function changeMode() {
+    const html = document.documentElement;
+    html.classList.toggle('dark');
+  };
+
   return {
     reset,
     play,
     pause,
-    getMinutes
+    getMinutes,
+    changeMode
   }
 }

@@ -15,7 +15,24 @@
   --button-color: #42D3FF;
   --card-color: #02799D;
 
+  --switch-bg-url: url(./assets/images/sun.svg);
+
   font-size: 62.5%;
+}
+
+.dark {
+  --bg-color: #000000;
+
+  --base-color: 194;
+  --bg-primary-light: hsla(var(--base-color), 100%, 63%, 0.13);
+  --primary-color: hsl(var(--base-color), 100%, 63%);
+
+  --text-color: #FFFFFF;
+  --button-color: #42D3FF;
+  --card-color: #02799D;
+
+  --switch-bg-url: url(./assets/images/moon.svg);
+
 }
 
 body {
@@ -26,14 +43,40 @@ body {
   font-weight: 500;
   font-size: 12.62rem;
 
-  display: grid;
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
 }
 
 main {
-  width: 100vw;
-  align-self: end;
-  justify-self: center;
+  width: 100%;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container_mode {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+
+  margin: 6rem 6rem 0 auto ;
+}
+
+#switch button {
+  width: 32px;
+  height: 32px;
+  background: var(--switch-bg-url) no-repeat center center / contain;
+  border: 0;
+  border-radius: 50%;
+}
+
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
 }
 
 .container {
@@ -102,7 +145,10 @@ button svg {
 }
 
 .card {
+  position: relative;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -130,9 +176,102 @@ button svg {
   background: var(--card-color);
 }
 
-footer {
-  align-self: end;
-  justify-self: end;
+button + span {
+  background: rgb(50, 50, 56);
+}
+/* 
+#forest {
 
-  padding: 0 4rem 3.2rem 0;
+} */
+
+#forest button {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 50%;
+
+  background: var(--button-color);
+
+  position: absolute;
+  bottom: 17%;
+  left: 45%;
+  z-index: 1;
+}
+
+#forest span {
+  display: block;
+  width: 80%;
+  height: 8px;
+
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+
+  margin-top: 20%;
+}
+
+.active span {
+  background: var(--bg-color);
+}
+/* 
+#rain {
+
+} */
+
+#rain button {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 50%;
+
+  background: var(--button-color);
+
+  position: absolute;
+  bottom: 17%;
+  left: 45%;
+  z-index: 1;
+}
+
+#rain span {
+  display: block;
+  width: 80%;
+  height: 8px;
+
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+
+  margin-top: 20%;
+}
+
+/* 
+#store {
+
+}
+
+#fireplace {
+
+} */
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+
+  width: 100%;
+  height: 10vw;
+
+}
+
+footer button {
+  background: #E1E1E6;
+  border-radius: 50%;
+  
+  margin: 4rem 2rem 0 0;
+}
+
+footer button svg {
+  padding: 10px;
 }

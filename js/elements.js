@@ -9,6 +9,8 @@ const buttonSoundOff = document.querySelector('.sound-off')
 const minutesDisplay = document.querySelector('.minutes')
 const secondsDisplay = document.querySelector('.seconds')
 const selectedCard = document.querySelectorAll('.card')
+const buttonSwitchMode = document.querySelector('#switch')
+const buttonVolume = document.querySelectorAll('svg + button')
 
 export {
   buttonPlay,
@@ -21,5 +23,7 @@ export {
   buttonSoundOn,
   minutesDisplay,
   secondsDisplay,
-  selectedCard
+  selectedCard,
+  buttonSwitchMode,
+  buttonVolume
 }
