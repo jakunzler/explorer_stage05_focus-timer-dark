@@ -38,6 +38,7 @@ export default function({controls, timer, sound}) {
     buttonSoundOn.classList.remove('hide')
     buttonSoundOff.classList.add('hide')
     sound.bgAudio[bgAudioEnvironment].play()
+    sound.bgAudio[bgAudioEnvironment].volume = 0.5;
   })
   
   buttonSoundOn.addEventListener('click', function() {
@@ -70,7 +71,6 @@ export default function({controls, timer, sound}) {
 
     let event_trigger;
     let event_tag = event.target.tagName.toLowerCase();
-    buttonSoundOn.click();
 
     if (event_tag == 'div') {
       event_trigger = event.target
@@ -78,8 +78,14 @@ export default function({controls, timer, sound}) {
       event_trigger = event.target.parentElement
     } else if (event_tag == 'path') {
       event_trigger = event.target.parentElement.parentElement
-    }
+    } else if (event_tag == 'button') {
+      return;
+    } else if (event_tag == 'span') {
+      return;
+    };
  
+    buttonSoundOn.click();
+
     let activeCard = document.querySelector('.active');
 
     if (activeCard && activeCard.id == event_trigger.id) {
@@ -104,23 +110,15 @@ export default function({controls, timer, sound}) {
     controls.changeMode()
   })
 
-  buttonVolume.forEach( element => element.addEventListener('mousedown', teste));
-  buttonVolume.forEach( element => element.removeEventListener('mouseup', teste));
-    
-  function teste() {
-      console.log('teste');
-  };
-
-  function set_volume() {
-    sound.pressButton()
-
-    const button = event.target;
+  buttonVolume.forEach( element => element.addEventListener('mousedown', set_volume));
+  
+  function move_fader() {
+    if (event.target.tagName.toLowerCase() != 'button') return;
+    const button = event.target; console.log(button);
     let button_position = button.style.left;
     const span = button.nextElementSibling;
     const card = span.parentElement;
     const rect = card.getBoundingClientRect();
-
-    card.addEventListener('mousemove', set_volume);
 
     const x_min = rect.left;
     const x_max = rect.right;
@@ -130,17 +128,27 @@ export default function({controls, timer, sound}) {
     if (volume <= 0.05) {
       buttonSoundOn.classList.add('hide');
       buttonSoundOff.classList.remove('hide');
-      button.style.left = `5%`; console.log(x, volume, button, button.style.left)
+      button.style.left = `5%`;
       sound.bgAudio[bgAudioEnvironment].volume = 0;
     } else if (volume > 0.05 && volume <= 0.85) {
       buttonSoundOn.classList.remove('hide');
       buttonSoundOff.classList.add('hide');
       button_position = 100 * volume;
-      button.style.left = `${button_position}%`; console.log(x, volume, button, button.style.left)
+      button.style.left = `${button_position}%`;
       sound.bgAudio[bgAudioEnvironment].volume = volume;
     } else {
-      button.style.left = `85%`; console.log(x, volume, button, button.style.left)
+      button.style.left = `85%`;
       sound.bgAudio[bgAudioEnvironment].volume = 1;
     };
+  };
+
+  function set_volume() {
+    sound.pressButton()
+
+    document.addEventListener('mousemove', move_fader);
+    document.addEventListener('mouseup', () => {
+      sound.bgAudio[bgAudioEnvironment].play()
+      document.removeEventListener('mousemove', move_fader);
+    })
   };
 };

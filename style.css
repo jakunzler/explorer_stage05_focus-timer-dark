@@ -179,10 +179,10 @@ button svg {
 button + span {
   background: rgb(50, 50, 56);
 }
-/* 
-#forest {
 
-} */
+.active span {
+  background: var(--bg-color);
+}
 
 #forest button {
   width: 16px;
@@ -211,14 +211,6 @@ button + span {
   margin-top: 20%;
 }
 
-.active span {
-  background: var(--bg-color);
-}
-/* 
-#rain {
-
-} */
-
 #rain button {
   width: 16px;
   height: 16px;
@@ -246,14 +238,59 @@ button + span {
   margin-top: 20%;
 }
 
-/* 
-#store {
+#store button {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 50%;
 
+  background: var(--button-color);
+
+  position: absolute;
+  bottom: 17%;
+  left: 45%;
+  z-index: 1;
 }
 
-#fireplace {
+#store span {
+  display: block;
+  width: 80%;
+  height: 8px;
 
-} */
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+
+  margin-top: 20%;
+}
+
+#fireplace button {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 50%;
+
+  background: var(--button-color);
+
+  position: absolute;
+  bottom: 17%;
+  left: 45%;
+  z-index: 1;
+}
+
+#fireplace span {
+  display: block;
+  width: 80%;
+  height: 8px;
+
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+
+  margin-top: 20%;
+}
 
 footer {
   display: flex;
